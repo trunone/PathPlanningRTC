@@ -269,7 +269,6 @@ class PathPlanning
   // </rtc-template>
 
  private:
-    static PathPlanning* unique_instance;
   // <rtc-template block="private_attribute">
   
   // </rtc-template>

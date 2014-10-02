@@ -46,7 +46,7 @@ class PathServiceSVC_impl
    // destructor non-public
    //virtual ~PathServiceSVC_impl();
 
-    PathPlanning *rtc_ptr;
+    PathPlanning *rtc_ptr_;
 
  public:
   /*!
@@ -61,7 +61,7 @@ class PathServiceSVC_impl
    // attributes and operations
    void get_path(RTC::Path2D_out path, const RTC::Pose2D& position, const RTC::Pose2D& target);
 
-   void set_rtc_ptr(PathPlanning *rtc_ptr) {this->rtc_ptr = rtc_ptr;}
+   void set_rtc_ptr(PathPlanning *rtc_ptr_) {this->rtc_ptr_ = rtc_ptr_;}
 };
 
 

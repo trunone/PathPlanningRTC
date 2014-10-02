@@ -27,13 +27,13 @@ PathServiceSVC_impl::~PathServiceSVC_impl()
  */
 void PathServiceSVC_impl::get_path(RTC::Path2D_out path, const RTC::Pose2D& position, const RTC::Pose2D& target)
 {
-    CSerializablePtr obj;
-    StringToObject(rtc_ptr->get_map(), obj);
+    CSerializablePtr serializable_ptr;
+    StringToObject(rtc_ptr_->get_map(), serializable_ptr);
 
-    std::deque<TPoint2D> t_path;
+    std::deque<TPoint2D> deque_path;
 
     COccupancyGridMap2D grid_map;
-    grid_map.loadFromSimpleMap(*CSimpleMapPtr(obj));
+    grid_map.loadFromSimpleMap(*CSimpleMapPtr(serializable_ptr));
 
     CPathPlanningCircularRobot path_planning;
     path_planning.robotRadius = 0.30f;
@@ -42,14 +42,14 @@ void PathServiceSVC_impl::get_path(RTC::Path2D_out path, const RTC::Pose2D& posi
     path_planning.computePath(grid_map,
             CPose2D(position.position.x, position.position.y, position.heading),
             CPose2D(target.position.x, target.position.y, target.heading),
-            t_path, not_found, 1000.0f);
+            deque_path, not_found, 1000.0f);
 
     path = new RTC::Path2D();
     if(!not_found) {
-        path->waypoints.length(t_path.size());
+        path->waypoints.length(deque_path.size());
         int i = 0;
-        std::deque<TPoint2D>::const_iterator it = t_path.begin();
-        for(;it != t_path.end(); ++it, i++) {
+        std::deque<TPoint2D>::const_iterator it = deque_path.begin();
+        for(;it != deque_path.end(); ++it, i++) {
             path->waypoints[i].target.position.x = it->x;
             path->waypoints[i].target.position.y = it->y;
             path->waypoints[i].target.heading = 0.0f;
