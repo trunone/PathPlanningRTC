@@ -157,10 +157,11 @@ RTC::ReturnCode_t PathPlanning::onRateChanged(RTC::UniqueId ec_id)
 }
 */
 
-void PathPlanning::get_map(std::string &str) {
+std::string PathPlanning::get_map() {
     char *c_str;
     m_getMap->getMap(c_str);
-    str.assign(c_str);
+    std::string str(c_str);
+    return str;
 }
 
 extern "C"

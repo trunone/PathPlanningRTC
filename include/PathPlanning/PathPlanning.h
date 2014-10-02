@@ -214,7 +214,7 @@ class PathPlanning
    */
   // virtual RTC::ReturnCode_t onRateChanged(RTC::UniqueId ec_id);
 
-    void get_map(std::string&);
+   std::string get_map();
 
  protected:
   // <rtc-template block="protected_attribute">
