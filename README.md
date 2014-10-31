@@ -1,5 +1,5 @@
 PathPlanningRTC
-===============
+====
 
 Layout
 ----
@@ -25,18 +25,36 @@ Requirements
 Port
 ----
 
-| Name     | Type          | Data Type   | Purpose  |
-| -------- | ------------- | ----------- | ----- |
-| path     | Service       | PathService | path |
-| map      | Service       | MapService  | map |
+| Name     | Type          | Data Type   | Purpose |
+| -------- | ------------- | ----------- | ------- |
+| path     | Service       | PathService | Get the target position and the original position and send back the path |
+| map      | Service       | MapService  | Get the environment map |
 
+  * PathService.idl
 
-Installation
-----
+| Function | Variable | Type | Data Type | Purpose |
+| -------- | -------- | ---- | --------- | ------- |
+| get_path | path     | out | RTC::Path2D | The found path |
+|          | position | in  | RTC::Pose2D | The robot position |
+|          | target   | in  | RTC::Pose2D | The target position |
+
+  * MapService.idl
+
+| Function | Variable | Type | Data Type   |
+| -------- | -------- | ---- | ----------- |
+| getMap   | arg      | out  | string      |
 
 Usage
 ----
 
+Download and install [Mobile Robot Programming Toolkit](http://www.mrpt.org/)
 
 License
 ----
+
+Licensed under the [Apache License, Version 2.0][Apache]  
+Distributed under the [MIT License][mit].  
+Dual licensed under the [MIT license][MIT] and [Apache License, Version 2.0][Apache].  
+ 
+[Apache]: http://www.apache.org/licenses/LICENSE-2.0
+[MIT]: http://www.opensource.org/licenses/mit-license.php
